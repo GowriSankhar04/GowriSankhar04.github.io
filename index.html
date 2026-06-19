@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gowri Sankhar S — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --bg:        #0a0e1a;
+    --surface:   #111827;
+    --card:      #161d2e;
+    --card-hover:#1a2238;
+    --border:    #1e2d45;
+    --teal:      #00d4b1;
+    --teal-dim:  #00d4b120;
+    --violet:    #7c3aed;
+    --violet-dim:#7c3aed22;
+    --text:      #e2e8f0;
+    --muted:     #64748b;
+    --faint:     #334155;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+    --radius:    12px;
+    --radius-sm: 6px;
+    --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--teal); text-decoration: none; transition: opacity var(--transition); }
+  a:hover { opacity: 0.8; }
+  img { max-width: 100%; display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 64px;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--teal); opacity: 1; }
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--teal);
+    color: var(--teal) !important;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition) !important;
+  }
+  .nav-cta:hover { background: var(--teal-dim); opacity: 1 !important; }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text); margin: 4px 0;
+    transition: var(--transition);
+  }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex; align-items: center;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    overflow: hidden;
+  }
+  #neural-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+    padding-top: 64px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 28px; height: 1px;
+    background: var(--teal);
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name .accent { color: var(--teal); }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-tagline {
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.75;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-links {
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--teal);
+    color: var(--bg) !important;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px #00d4b140; opacity: 1 !important; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    color: var(--text) !important;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .btn-ghost:hover { border-color: var(--teal); background: var(--teal-dim); opacity: 1 !important; }
+  .hero-social {
+    display: flex; gap: 1.25rem; margin-top: 3rem;
+  }
+  .hero-social a {
+    color: var(--muted);
+    transition: color var(--transition);
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+  }
+  .hero-social a:hover { color: var(--teal); opacity: 1; }
+
+  /* ── SECTIONS ── */
+  section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+    max-width: 200px;
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 3rem;
+  }
+  .content-wrap { max-width: 1100px; margin: 0 auto; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text);
+    opacity: 0.82;
+    margin-bottom: 1rem;
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color var(--transition);
+  }
+  .stat-card:hover { border-color: var(--teal); }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    font-family: var(--font-mono);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-timeline { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .exp-item:hover { border-color: var(--teal); transform: translateX(4px); }
+  .exp-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding-top: 0.2rem;
+    line-height: 1.5;
+  }
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .exp-org {
+    font-size: 0.85rem;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-mono);
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.92rem;
+    color: var(--text);
+    opacity: 0.78;
+    padding: 0.25rem 0;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--teal); font-size: 0.7rem;
+    top: 0.35rem;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .proj-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--teal-dim), transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+  .proj-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 16px 40px #00d4b118; }
+  .proj-card:hover::before { opacity: 1; }
+  .proj-icon {
+    width: 48px; height: 48px;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    position: relative; z-index: 1;
+  }
+  .proj-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    position: relative; z-index: 1;
+    line-height: 1.3;
+  }
+  .proj-summary {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    position: relative; z-index: 1;
+    line-height: 1.55;
+  }
+  .proj-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    position: relative; z-index: 1;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--violet-dim);
+    border: 1px solid #7c3aed44;
+    color: #a78bfa;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+  .proj-expand-hint {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    font-size: 0.75rem;
+    color: var(--teal);
+    font-family: var(--font-mono);
+    opacity: 0;
+    transition: opacity var(--transition);
+    z-index: 1;
+  }
+  .proj-card:hover .proj-expand-hint { opacity: 1; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%; max-width: 760px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .modal-close:hover { border-color: var(--teal); color: var(--teal); }
+  .modal-header { margin-bottom: 2rem; padding-right: 2.5rem; }
+  .modal-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+    width: 60px; height: 60px;
+    background: var(--teal-dim); border: 1px solid var(--teal);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .modal-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .modal-section { margin-bottom: 1.75rem; }
+  .modal-section-title {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .modal-section p, .modal-section li {
+    font-size: 0.92rem;
+    color: var(--text);
+    opacity: 0.82;
+    line-height: 1.7;
+  }
+  .modal-section ul { list-style: none; }
+  .modal-section ul li { padding: 0.2rem 0; padding-left: 1rem; position: relative; }
+  .modal-section ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--teal); font-size: 0.75rem;
+  }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .modal-links {
+    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .modal-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    color: var(--text) !important;
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .modal-link:hover { border-color: var(--teal); background: var(--teal-dim); opacity: 1 !important; }
+  .modal-link.primary { border-color: var(--teal); color: var(--teal) !important; }
+  .disclaimer {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border-left: 2px solid var(--violet);
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color var(--transition);
+  }
+  .skill-group:hover { border-color: var(--violet); }
+  .skill-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #a78bfa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .skill-pill {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--faint);
+    color: var(--text);
+    border-radius: 20px;
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .skill-pill:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cert-list { display: flex; flex-direction: column; gap: 1rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .cert-item:hover { border-color: var(--teal); transform: translateX(4px); }
+  .cert-icon {
+    font-size: 1.4rem;
+    width: 44px; height: 44px;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cert-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .cert-issuer {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--teal);
+    margin-top: 0.15rem;
+  }
+
+  /* ── CONTACT / FOOTER ── */
+  #contact { text-align: center; padding-bottom: 2rem; }
+  .contact-email {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    padding: 1rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .contact-email:hover { border-color: var(--teal); background: var(--teal-dim); opacity: 1; }
+  .contact-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted) !important;
+    transition: border-color var(--transition), color var(--transition), background var(--transition);
+  }
+  .contact-link:hover { border-color: var(--teal); color: var(--teal) !important; background: var(--teal-dim); opacity: 1 !important; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .footer-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem;
+      gap: 1.25rem;
+    }
+    .hamburger { display: block; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-date { padding-top: 0; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .modal { max-height: 95vh; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .hero-links { flex-direction: column; }
+    .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    .about-stats { grid-template-columns: 1fr; }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--faint); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  @media (prefers-reduced-motion: reduce) {
+    *, .modal, .modal-overlay { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">GS<span>.</span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="neural-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">AI/ML Engineer · Applied Data Scientist</p>
+    <h1 class="hero-name">Gowri<br/>Sankhar <span class="accent">S.</span></h1>
+    <p class="hero-title">B.Tech Bioinformatics · SASTRA Deemed University</p>
+    <p class="hero-tagline">
+      Building end-to-end intelligent systems — from 3D MRI analysis to mobile-deployed 
+      neural networks — at the intersection of deep learning and healthcare.
+    </p>
+    <div class="hero-links">
+      <a href="#projects" class="btn-primary">View Projects ↓</a>
+      <a href="mailto:gowrisankhar2026@gmail.com" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-social">
+      <a href="https://github.com/GowriSankhar04" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/gowri-sankhar-s-1b1401286/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:gowrisankhar2026@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="content-wrap">
+    <p class="section-label">01 — About</p>
+    <h2 class="section-heading">The human behind<br/>the models</h2>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>
+          I'm a final-year Bioinformatics undergraduate at SASTRA Deemed University, building 
+          ML systems that sit at the boundary of biology and artificial intelligence. My work 
+          spans deep learning for medical imaging, audio signal processing for respiratory 
+          disease detection, and mobile-first deployment of neural networks.
+        </p>
+        <p>
+          What drives me: making powerful AI accessible — not just as research artifacts, 
+          but as tools people can open on their phones. Every project I've shipped is live 
+          on Google Play, used by real people.
+        </p>
+        <p>
+          Outside the lab, I serve as Vice Chairman of COMBIGS, SASTRA's computational 
+          biology society, organizing workshops and building community around the intersection 
+          of CS and life sciences.
+        </p>
+      </div>
+      <div class="about-stats fade-up">
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">End-to-end ML apps deployed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">7.86</div>
+          <div class="stat-label">CGPA / 10 — SASTRA University</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Live apps on Google Play Store</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">Graduating — B.Tech Bioinformatics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="content-wrap">
+    <p class="section-label">02 — Experience</p>
+    <h2 class="section-heading">Where I've worked</h2>
+    <div class="exp-timeline">
+      <div class="exp-item fade-up">
+        <div class="exp-date">Jun 2024<br/>– Oct 2024<br/><br/>Remote</div>
+        <div>
+          <div class="exp-role">AI/ML Intern</div>
+          <div class="exp-org">Learnflu</div>
+          <ul class="exp-bullets">
+            <li>Built supervised ML models in Python and scikit-learn for real-world datasets across multiple domains.</li>
+            <li>Evaluated model quality using accuracy, precision, recall, and F1-score; iterated on feature engineering pipelines.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item fade-up">
+        <div class="exp-date">Apr 2024<br/>– May 2025<br/><br/>SASTRA Univ.</div>
+        <div>
+          <div class="exp-role">Vice Chairman</div>
+          <div class="exp-org">COMBIGS — Computational Biology Student Society</div>
+          <ul class="exp-bullets">
+            <li>Organized technical workshops and seminars to promote computational biology awareness across the university.</li>
+            <li>Led cross-functional team collaboration, coordinating academic events and speaker sessions.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="content-wrap">
+    <p class="section-label">03 — Projects</p>
+    <h2 class="section-heading">Things I've built</h2>
+    <div class="projects-grid">
+
+      <div class="proj-card fade-up" data-project="0" role="button" tabindex="0" aria-label="View details for Indian Snake Species Classification App">
+        <span class="proj-expand-hint">click to expand →</span>
+        <div class="proj-icon">🐍</div>
+        <div class="proj-title">Indian Snake Species Classification App</div>
+        <div class="proj-summary">ResNet50 CNN for multi-class snake species ID from images, deployed as an Android app live on Google Play.</div>
+        <div class="proj-tags">
+          <span class="tag">ResNet50</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Keras</span>
+          <span class="tag">Kotlin</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">Android</span>
+        </div>
+      </div>
+
+      <div class="proj-card fade-up" data-project="1" role="button" tabindex="0" aria-label="View details for Lung Disease Classification App">
+        <span class="proj-expand-hint">click to expand →</span>
+        <div class="proj-icon">🫁</div>
+        <div class="proj-title">Lung Disease Classification App</div>
+        <div class="proj-summary">Ensemble ML model classifying respiratory disease from lung sound recordings — live on Google Play.</div>
+        <div class="proj-tags">
+          <span class="tag">Librosa</span>
+          <span class="tag">MLP</span>
+          <span class="tag">Random Forest</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Kotlin</span>
+          <span class="tag">Audio ML</span>
+        </div>
+      </div>
+
+      <div class="proj-card fade-up" data-project="2" role="button" tabindex="0" aria-label="View details for NeuroAge Brain Age Gap Estimation">
+        <span class="proj-expand-hint">click to expand →</span>
+        <div class="proj-icon">🧠</div>
+        <div class="proj-title">NeuroAge — Brain Age Gap Estimation</div>
+        <div class="proj-summary">3D CNN estimating biological brain age from MRI to study Alzheimer's-related neurodegeneration patterns.</div>
+        <div class="proj-tags">
+          <span class="tag">3D CNN</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">MONAI</span>
+          <span class="tag">ADNI Dataset</span>
+          <span class="tag">MRI</span>
+          <span class="tag">Regression</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="content-wrap">
+    <p class="section-label">04 — Skills</p>
+    <h2 class="section-heading">Tools &amp; technologies</h2>
+    <div class="skills-grid fade-up">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">Kotlin</span>
+          <span class="skill-pill">Java</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ML / Deep Learning</div>
+        <div class="skill-pills">
+          <span class="skill-pill">TensorFlow</span>
+          <span class="skill-pill">Keras</span>
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">Scikit-learn</span>
+          <span class="skill-pill">MONAI</span>
+          <span class="skill-pill">Librosa</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data &amp; Analysis</div>
+        <div class="skill-pills">
+          <span class="skill-pill">NumPy</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">Matplotlib</span>
+          <span class="skill-pill">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Deployment &amp; Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">Hugging Face</span>
+          <span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Android Studio</span>
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">Google Colab</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="content-wrap">
+    <p class="section-label">05 — Certifications</p>
+    <h2 class="section-heading">Credentials</h2>
+    <div class="cert-list fade-up">
+      <div class="cert-item">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <div class="cert-name">Generative AI and Prompt Engineering</div>
+          <div class="cert-issuer">HCL Tech</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <div class="cert-name">AI Course and Internship</div>
+          <div class="cert-issuer">AICTE Learnflu</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">💻</div>
+        <div>
+          <div class="cert-name">Python Programming and SQL Fundamentals</div>
+          <div class="cert-issuer">HackerRank</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="content-wrap">
+    <p class="section-label" style="justify-content:center">06 — Contact</p>
+    <h2 class="section-heading">Let's build something</h2>
+    <p style="color:var(--muted);max-width:480px;margin:0 auto 2.5rem;font-size:0.95rem;">
+      Open to full-time roles, research collaborations, and interesting problems 
+      in AI-driven healthcare. My inbox is always open.
+    </p>
+    <a href="mailto:gowrisankhar2026@gmail.com" class="contact-email">
+      gowrisankhar2026@gmail.com
+    </a>
+    <div class="contact-links">
+      <a href="https://github.com/GowriSankhar04" target="_blank" rel="noopener" class="contact-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/gowri-sankhar-s-1b1401286/" target="_blank" rel="noopener" class="contact-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Gowri Sankhar S.</div>
+  <div class="footer-note">AI/ML Engineer · Built with HTML, CSS & JS · 2025</div>
+</footer>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ── NEURAL CANVAS ──
+const canvas = document.getElementById('neural-canvas');
+const ctx = canvas.getContext('2d');
+let nodes = [], W, H;
+
+function resize() {
+  W = canvas.width  = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+
+function initNodes() {
+  nodes = [];
+  const count = Math.floor((W * H) / 14000);
+  for (let i = 0; i < count; i++) {
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 2 + 1.5,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawNeural(t) {
+  ctx.clearRect(0, 0, W, H);
+  const maxDist = 160;
+
+  nodes.forEach(n => {
+    n.x += n.vx; n.y += n.vy;
+    n.pulse += 0.02;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+  });
+
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < maxDist) {
+        const alpha = (1 - dist / maxDist) * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = `rgba(0,212,177,${alpha})`;
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+    const glow = 0.6 + 0.4 * Math.sin(nodes[i].pulse);
+    ctx.beginPath();
+    ctx.arc(nodes[i].x, nodes[i].y, nodes[i].r * glow, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,212,177,${glow * 0.8})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(drawNeural);
+}
+
+const ro = new ResizeObserver(() => { resize(); initNodes(); });
+ro.observe(canvas.parentElement);
+resize(); initNodes(); drawNeural();
+
+// ── NAV ──
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
+});
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── PROJECT DATA ──
+const projects = [
+  {
+    icon: '🐍',
+    title: 'Indian Snake Species Classification App',
+    subtitle: 'Deep Learning · Computer Vision · Android',
+    motivation: 'Snake bites are a significant public health issue in India. Accurate and fast species identification helps healthcare providers administer the right antivenom. This app puts that capability in anyone\'s pocket.',
+    dataset: '~13 Indian snake species classes with 250–350 images per class. Data augmentation via resizing, normalization, horizontal flipping, rotation, zoom, and CutMix. SMOTE-based class balancing to handle imbalanced distributions.',
+    pipeline: [
+      'ResNet50 backbone via transfer learning, then fine-tuned on the snake species dataset.',
+      'Training with TensorFlow and Keras; inference served via Hugging Face Inference API.',
+      'Android app built in Kotlin — supports camera capture, gallery upload, real-time species prediction, and species info display.',
+      'Multilingual support: English, Tamil, Telugu, and Hindi.',
+    ],
+    results: 'Strong multi-class classification performance on real-world images. App is live on the Google Play Store.',
+    stack: ['Python', 'TensorFlow', 'Keras', 'ResNet50', 'NumPy', 'Scikit-learn', 'Hugging Face', 'Kotlin', 'Android Studio'],
+    links: [
+      { label: '⬡ GitHub', url: 'https://github.com/GowriSankhar04/Indian-Snake-species-classification', primary: true },
+      { label: '▶ Google Play', url: 'https://play.google.com/store/apps/details?id=com.gs.slitherin', primary: false },
+    ],
+    disclaimer: null,
+  },
+  {
+    icon: '🫁',
+    title: 'Lung Disease Classification App',
+    subtitle: 'Audio ML · Ensemble Learning · Android',
+    motivation: 'Respiratory diseases affect hundreds of millions globally, yet diagnosis often requires expensive equipment. This project explores whether a smartphone and ensemble ML can bridge that gap.',
+    dataset: 'Public respiratory sound datasets covering multiple disease categories including normal, wheeze, crackle, and mixed patterns. Preprocessing: noise reduction, normalization, segmentation, feature standardization.',
+    pipeline: [
+      'Feature extraction via Librosa: 146 handcrafted audio features including MFCCs, chroma, spectral centroid, bandwidth, rolloff, zero crossing rate, RMS energy, spectral contrast, and tonnetz.',
+      'Ensemble of MLP + Random Forest classifiers for robust prediction.',
+      'REST API backend via Flask, deployed on Hugging Face Inference API for cloud inference.',
+      'Android app in Kotlin: record or upload audio, real-time classification, cloud-based result display.',
+    ],
+    results: 'Ensemble approach improved model robustness. App live on Google Play Store for research and educational use.',
+    stack: ['Python', 'Librosa', 'Scikit-learn', 'MLP', 'Random Forest', 'Flask', 'Hugging Face', 'Kotlin', 'REST API'],
+    links: [
+      { label: '⬡ GitHub', url: 'https://github.com/GowriSankhar04/Lung-Disease-Classification', primary: true },
+      { label: '▶ Google Play', url: 'https://play.google.com/store/apps/details?id=com.gs.safebreath', primary: false },
+    ],
+    disclaimer: 'Educational and research use only — not a medical diagnostic tool.',
+  },
+  {
+    icon: '🧠',
+    title: 'NeuroAge — Brain Age Gap Estimation',
+    subtitle: '3D CNN · Medical Imaging · Neurodegeneration',
+    motivation: 'Brain Age Gap (BAG = predicted age − chronological age) is a biomarker for neurodegeneration: healthy brains appear younger, Alzheimer\'s brains appear older. This project uses 3D CNNs on MRI to quantify and study that gap.',
+    dataset: 'ADNI dataset — 406 T1-weighted MRI scans: 134 Cognitively Normal (CN), 150 Mild Cognitive Impairment (MCI), 122 Alzheimer\'s Disease (AD). Preprocessed to 96×96×96 voxel volumes using MONAI and PyTorch.',
+    pipeline: [
+      '3D CNN pretrained on CN vs AD binary classification to learn neurodegeneration-sensitive features.',
+      'Feature extractor reused with a regression head, trained on CN-only data to predict chronological brain age (MAE, RMSE, Pearson r, R² metrics).',
+      'BAG computed across CN/MCI/AD groups — expected ordering: CN < MCI < AD confirms neurodegeneration signal.',
+      'Statistical analysis via box plots, violin plots, scatter plots, and significance testing.',
+      'Companion Android app (Java/XML) for MRI upload and result display, deployed on Hugging Face.',
+    ],
+    results: 'Trained on Google Colab T4 GPU. Evaluation metrics: MAE, RMSE, Pearson correlation, and R². Expected BAG ordering validated across diagnostic groups.',
+    stack: ['Python', 'PyTorch', 'MONAI', '3D CNN', 'ADNI Dataset', 'Google Colab', 'Hugging Face', 'Java', 'Android Studio'],
+    links: [
+      { label: '⬡ GitHub (coming soon)', url: '#', primary: true },
+    ],
+    disclaimer: 'Research and educational use only — not for clinical diagnosis.',
+  },
+];
+
+// ── MODAL LOGIC ──
+const overlay = document.getElementById('modal-overlay');
+const modalContent = document.getElementById('modal-content');
+const modalClose = document.getElementById('modal-close');
+
+function openModal(idx) {
+  const p = projects[idx];
+  modalContent.innerHTML = `
+    <div class="modal-header">
+      <div class="modal-icon">${p.icon}</div>
+      <div class="modal-title" id="modal-title">${p.title}</div>
+      <div class="modal-subtitle">${p.subtitle}</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Motivation</div>
+      <p>${p.motivation}</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Dataset &amp; Preprocessing</div>
+      <p>${p.dataset}</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Pipeline &amp; Architecture</div>
+      <ul>${p.pipeline.map(s => `<li>${s}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Results</div>
+      <p>${p.results}</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Tech Stack</div>
+      <div class="modal-tags">${p.stack.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+    ${p.disclaimer ? `<div class="disclaimer">⚠ ${p.disclaimer}</div>` : ''}
+    <div class="modal-links">${p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="modal-link${l.primary ? ' primary' : ''}">${l.label}</a>`).join('')}</div>
+  `;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.proj-card').forEach(card => {
+  card.addEventListener('click', () => openModal(+card.dataset.project));
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(+card.dataset.project); });
+});
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
